@@ -75,7 +75,9 @@ void SYCLInternal::initialize(const sycl::device& d) {
       Kokkos::Impl::throw_runtime_exception(
           "There was an asynchronous SYCL error!\n");
   };
-  initialize(sycl::queue{d, exception_handler});
+  //initialize(sycl::queue{d, exception_handler});
+  initialize(
+      sycl::queue{d, exception_handler, sycl::property::queue::in_order()});
 }
 
 // FIXME_SYCL
